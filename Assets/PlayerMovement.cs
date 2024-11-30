@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField, Range(0, 100)] private float  tiltSpeed = 22.5f, moveSpeed = 10f;
+    [SerializeField, Range(0, 100)] private float moveSpeedHorizontal = 10f,  tiltSpeed = 22.5f, upwardSpeed = 5f;
     [SerializeField] private float horizontalSmoothFactorTime = 0.1f;
     [SerializeField] private float tiltRecoverySpeed = 20f;
     [SerializeField] private float maxTilt = 90f;
@@ -46,23 +46,25 @@ public class PlayerMovement : MonoBehaviour
 
         currentTilt = Mathf.Clamp(currentTilt, -maxTilt, maxTilt);
         
-        positionX += horizontalInput * moveSpeed * Time.deltaTime;
+        positionX += horizontalInput * moveSpeedHorizontal * Time.deltaTime;
         
         positionX = Mathf.Clamp(positionX, -10f, 10f);
 
-        moveDirection = transform.forward;
+        
     }
 
     private void FixedUpdate()
     {
         float smoothX_Value = Mathf.SmoothDamp(transform.position.x, positionX, ref currentVelocityX,
             horizontalSmoothFactorTime);
-
-        Vector3 movement = moveDirection * moveSpeed * Time.fixedDeltaTime;
         
+        float verticalMovement = upwardSpeed * Time.fixedDeltaTime;
+        
+        float horizontalMovement = Mathf.Sin(Mathf.Deg2Rad * currentTilt) * moveSpeedHorizontal * Time.fixedDeltaTime;
+        
+      
+        Vector3 movement = new Vector3(horizontalMovement, verticalMovement, 0);
         rigidbody.MovePosition(transform.position + movement);
-        
-        rigidbody.MovePosition(new Vector3(smoothX_Value, transform.position.y, transform.position.z));
         
         Quaternion targetRotation = Quaternion.Euler(0, 0, -currentTilt);
         rigidbody.MoveRotation(targetRotation);
