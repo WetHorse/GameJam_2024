@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private GameObject _mainView;
     [SerializeField] private GameObject _creditView;
     [SerializeField] private GameObject _controlsView;
-    [SerializeField] private Scene _scene;
+    [SerializeField] private string _scene = "Main";
 
     private void Awake()
     {
@@ -56,6 +56,6 @@ public class MenuManager : MonoBehaviour
 
     public void LoadNewGame()
     {
-        SceneManager.LoadScene(_scene.name);
+        SceneManager.LoadScene(_scene);
     }
 }
