@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseView;
+    [SerializeField] private GameObject _GameOverView;
     [SerializeField] private string scene = "Menu";
     private bool isPaused;
     private DefaultInputActions inputActions;
@@ -19,6 +20,7 @@ public class PauseManager : MonoBehaviour
         inputActions.Enable();
         inputActions.Player.Pause.performed += OnPause;
         _pauseView.SetActive(false);
+        _GameOverView.SetActive(false);
     }
 
     private void OnPause(InputAction.CallbackContext obj)
