@@ -14,7 +14,7 @@ public class RegionSpawner : MonoBehaviour
     [SerializeField] private int preSpawnCount = 3;
 
     private Vector3 currentFrameOrigin;
-  
+
 
     private void Start()
     {
@@ -44,6 +44,8 @@ public class RegionSpawner : MonoBehaviour
             }
             yield return null;
         }
+        yield return new WaitUntil(()=> currentFrameOrigin.y + (sizeY/2) <= origin.transform.position.y);
+        WinManager.Instance.GameWon();
     }
 
     private Region GetCurrentRegion() => regions.FirstOrDefault((r)=>r.FrameCount > 0);
@@ -109,7 +111,7 @@ public class RegionSpawner : MonoBehaviour
                 {
                     placedObstacles.Add(candidatePosition);
 
-                    Instantiate(randomObstacle, candidatePosition, Quaternion.identity, transform);
+                    var spawnedObject = Instantiate(randomObstacle, candidatePosition, Quaternion.identity);
                     spawnedObstacles++;
                 }
             }

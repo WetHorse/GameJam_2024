@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(PlayerHealthSystem))]
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField, Range(0, 100)] private float moveSpeedHorizontal = 10f,  tiltSpeed = 22.5f, upwardSpeed = 5f;
@@ -19,13 +20,25 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 moveDirection;
 
+    private PlayerHealthSystem playerHealthSystem;
+
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
         positionX = transform.position.x;
-
+        playerHealthSystem = GetComponent<PlayerHealthSystem>();
     }
     
+    public void SetSpeed(float speed)
+    {
+        upwardSpeed = speed;
+    }
+
+    public float GetSpeed()
+    {
+        return upwardSpeed;
+    }
+
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -39,8 +52,10 @@ public class PlayerMovement : MonoBehaviour
             currentTilt = Mathf.MoveTowards(currentTilt, maxTilt, tiltSpeed * Time.deltaTime);
         }
        
-        if (Mathf.Abs(currentTilt) > 60f)
+        if (Mathf.Abs(currentTilt) >= maxTilt)
         {
+            AllignPlayer();
+            playerHealthSystem.DamageIgnoreGodMod(25f);
             Debug.Log("Rocket critically tilted!");
         }
 
@@ -51,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
         positionX = Mathf.Clamp(positionX, -10f, 10f);
 
         
+    }
+
+    private void AllignPlayer()
+    {
+        currentTilt = 0;
     }
 
     private void FixedUpdate()
