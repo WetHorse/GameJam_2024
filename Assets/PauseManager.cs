@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject _pauseView;
+    [SerializeField] private GameObject _GameOverView;
     [SerializeField] private string scene = "Menu";
     private bool isPaused;
 
     private void Awake()
     {
         _pauseView.SetActive(false);
+        _GameOverView.SetActive(false);
     }
 
     void Update()
