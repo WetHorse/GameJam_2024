@@ -1158,7 +1158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeedHorizontal: 15
-  tiltSpeed: 30
+  tiltSpeed: 50
   upwardSpeed: 7.5
   horizontalSmoothFactorTime: 0.1
   maxTilt: 90
