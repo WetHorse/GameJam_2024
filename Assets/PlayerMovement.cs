@@ -41,11 +41,7 @@ public class PlayerMovement : MonoBehaviour
         {
             currentTilt = Mathf.MoveTowards(currentTilt, maxTilt, tiltSpeed * Time.deltaTime);
         }
-        else
-        {
-            currentTilt = Mathf.MoveTowards(currentTilt, 0, tiltRecoverySpeed * Time.deltaTime);
-        }
-        
+       
         if (Mathf.Abs(currentTilt) > 60f)
         {
             Debug.Log("Rocket critically tilted!");
