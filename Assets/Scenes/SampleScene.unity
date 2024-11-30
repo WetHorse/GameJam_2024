@@ -666,81 +666,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 212453528894781211, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: _GameOverView
-      value: 
-      objectReference: {fileID: 1277867477}
-    - target: {fileID: 1063157986635693611, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378123004531340401, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378123004531340401, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378123004531340401, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1378123004531340401, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6034241367892069224, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6034241367892069224, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6034241367892069224, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6034241367892069224, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6429994424229728353, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6429994424229728353, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6429994424229728353, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6429994424229728353, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7377823860627403996, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TogglePause
-      objectReference: {fileID: 0}
     - target: {fileID: 7683842820702629867, guid: e5ed66d690c4613448f6ea6b68916ff2,
         type: 3}
       propertyPath: m_IsActive
@@ -750,51 +675,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 8060796433158337166, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8557867475234924276, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8557867475234924276, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8557867475234924276, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8557867475234924276, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657335588285852701, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657335588285852701, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657335588285852701, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8657335588285852701, guid: e5ed66d690c4613448f6ea6b68916ff2,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9071189727501092934, guid: e5ed66d690c4613448f6ea6b68916ff2,
         type: 3}
@@ -950,12 +830,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1277867477 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7683842820702629867, guid: e5ed66d690c4613448f6ea6b68916ff2,
-    type: 3}
-  m_PrefabInstance: {fileID: 798323897}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1291673468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,10 +939,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1283,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2e2f4d5e8356d64a9e135b6b6cd7856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeedHorizontal: 10
+  moveSpeedHorizontal: 15
   tiltSpeed: 30
   upwardSpeed: 7.5
   horizontalSmoothFactorTime: 0.1
