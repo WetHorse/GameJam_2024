@@ -9,11 +9,12 @@ public class PlayerHealthSystem : MonoBehaviour
     [SerializeField] private Image display;
     [SerializeField,Range(0,100)] private float currentHealth, maxHealth;
     [SerializeField] private bool godMod;
-
+    public bool GodMod { get => godMod; set { godMod = value; } }
     [SerializeField] private UnityEvent onDeath, onDamageTaken, onHealApplied;
 
     public void Damage (float damage)
     {
+        if (godMod) return;
         currentHealth = Mathf.Clamp(currentHealth - damage,0, maxHealth);
         if (currentHealth <= 0)
         {
@@ -38,10 +39,5 @@ public class PlayerHealthSystem : MonoBehaviour
     public void UpdateDisplay ()
     {
         display.fillAmount = Mathf.Clamp01(currentHealth / maxHealth);
-    }
-
-    private void Update()
-    {
-        UpdateDisplay();
     }
 }
