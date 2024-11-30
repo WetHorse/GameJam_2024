@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField, Range(0, 100)] private float moveSpeedHorizontal = 10f,  tiltSpeed = 22.5f, upwardSpeed = 5f;
     [SerializeField] private float horizontalSmoothFactorTime = 0.1f;
-    [SerializeField] private float tiltRecoverySpeed = 20f;
+
     [SerializeField] private float maxTilt = 90f;
     
     [SerializeField] private new Rigidbody rigidbody;

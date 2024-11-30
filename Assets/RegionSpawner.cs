@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class RegionSpawner : MonoBehaviour
 {
     [SerializeField] private int framesLeft;
     [SerializeField] private int iterationLimitPerFrame = 10;
     [SerializeField] private Transform origin;
-    [SerializeField] private float spawnOffsetY = 10f;
-    [SerializeField] private float frameSpawnRange = 1f;
-
     [SerializeField] private List<Region> regions;
     [SerializeField] private float sizeX, sizeY, frameDistanceY;
     [SerializeField] private int preSpawnCount = 3;
@@ -32,6 +30,7 @@ public class RegionSpawner : MonoBehaviour
         public float MinimalDistance;
         public int ObstaclesPerFrame;
         public List<Obstacle> Obstacles;
+        public UnityEvent onRegionEnded;
     }
     
     private IEnumerator Spawn ()
@@ -67,7 +66,6 @@ public class RegionSpawner : MonoBehaviour
         framesLeft--;
         Region currentRegion = GetCurrentRegion();
         currentRegion.FrameCount--;
-
         float minX = frameCenter.x - (sizeX / 2);
         float maxX = frameCenter.x + (sizeX / 2);
         float minY = frameCenter.y - (sizeY / 2);
@@ -84,7 +82,7 @@ public class RegionSpawner : MonoBehaviour
             if (currentRegion.Obstacles.Count > 0)
             {
                 Obstacle randomObstacle = currentRegion.Obstacles[Random.Range(0, currentRegion.Obstacles.Count)];
-                Vector3 obstacleSize = randomObstacle.GetComponent<Renderer>().bounds.size;
+                Vector3 obstacleSize = randomObstacle.transform.localScale;
 
                 float candidateMinX = minX + obstacleSize.x / 2;
                 float candidateMaxX = maxX - obstacleSize.x / 2;
@@ -116,8 +114,11 @@ public class RegionSpawner : MonoBehaviour
                 }
             }
         }
-
-        DrawBox(frameCenter, new Vector3(sizeX, sizeY), Color.red);
+        if (currentRegion.FrameCount == 0)
+        {
+            currentRegion.onRegionEnded?.Invoke();
+        }
+        //DrawBox(frameCenter, new Vector3(sizeX, sizeY), Color.red);
     }
 
 
@@ -135,14 +136,5 @@ public class RegionSpawner : MonoBehaviour
         Debug.DrawLine(topRight, bottomRight, color, 5f);
         Debug.DrawLine(bottomRight, bottomLeft, color, 5f);
         Debug.DrawLine(bottomLeft, topLeft, color, 5f); 
-    }
-
-
-
-    private void OnDrawGizmos()
-    {
-        if (origin == null) return;
-        Gizmos.color = Color.green;
-       // Gizmos.DrawCube(transform.position + new Vector3(0,spawnOffsetY,0),new Vector3(sizeX,sizeY));
     }
 }
