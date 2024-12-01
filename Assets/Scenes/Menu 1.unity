@@ -4127,7 +4127,11 @@ MonoBehaviour:
     Completion
     of a Game Jam project within: the specialized area eXtended Reality, Games and
     Immersive Systems in departament of eXtended Reality, Games and Immersive Systems
-    at the Polish-Japanese Academy of Information Technology'
+    at the Polish-Japanese Academy of Information Technology
+
+
+    Warsaw, November
+    2024'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4396,7 +4400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48253ba49c9bdcf4cbdba28d5e0f25ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mainView: {fileID: 703999338}
+  _mainView: {fileID: 1622938698}
   _creditView: {fileID: 151301787}
   _controlsView: {fileID: 2100593365}
   _scene: SampleScene
