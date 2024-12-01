@@ -2806,6 +2806,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 212453528894781211, guid: e5ed66d690c4613448f6ea6b68916ff2,
         type: 3}
+      propertyPath: scene
+      value: Menu 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212453528894781211, guid: e5ed66d690c4613448f6ea6b68916ff2,
+        type: 3}
       propertyPath: notificationDisplay
       value: 
       objectReference: {fileID: 1673841341}
