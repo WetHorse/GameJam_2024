@@ -17,7 +17,7 @@ public class Border : MonoBehaviour
         if (playerInRange)
         {
             currentLooseTime -= Time.deltaTime;
-            PauseManager.Instance.SetNotification($"Get back to course! Time left: {Mathf.Ceil(currentLooseTime)}");
+            PauseManager.Instance.SetNotification($"{Mathf.Ceil(currentLooseTime)}");
 
             if (currentLooseTime <= 0)
             {
