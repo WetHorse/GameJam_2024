@@ -22,6 +22,7 @@ public class WinManager : MonoBehaviour
     {
         scoreDisplay.text = ScoreManager.Score;
         winScreen.SetActive(true);
+        Time.timeScale = 0f;
         Debug.Log("Yeaaah win!");
     }
 }

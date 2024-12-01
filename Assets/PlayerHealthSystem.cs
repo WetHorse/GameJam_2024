@@ -32,6 +32,7 @@ public class PlayerHealthSystem : MonoBehaviour
         if (currentHealth <= 0)
         {
             Debug.Log("Player died");
+            UpdateDisplay();
             PauseManager.Instance.OnDefeat();
             return;
         }
