@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerHealthSystem))]
@@ -12,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private new Rigidbody rigidbody;
     [SerializeField] private Transform thrust;
+    [SerializeField] private UnityEvent<bool> onSpeedUp; 
     private DefaultInputActions inputActions;
 
     private float positionX;
@@ -32,6 +34,11 @@ public class PlayerMovement : MonoBehaviour
     public void SetSpeed(float speed)
     {
         upwardSpeed = speed;
+    }
+
+    public void OnSpeedBoost (bool active)
+    {
+        onSpeedUp?.Invoke(active);
     }
 
     public float GetSpeed()

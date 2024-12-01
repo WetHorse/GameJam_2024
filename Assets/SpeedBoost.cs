@@ -22,6 +22,7 @@ public class SpeedBoost : Boost<PlayerMovement>
             playerMovement.SetSpeed(Mathf.Lerp(defaultSpeed, targetSpeed, accelerationTime));
             await Task.Yield();
         }
+        playerMovement.OnSpeedBoost(true);
         playerMovement.SetSpeed(targetSpeed);
         Debug.Log("Speed setted!");
         RollBack(playerMovement,playerHealthSystem);
@@ -42,6 +43,7 @@ public class SpeedBoost : Boost<PlayerMovement>
             playerMovement.SetSpeed(Mathf.Lerp(targetSpeed, defaultSpeed, accelerationTime));
             await Task.Yield();
         }
+        playerMovement.OnSpeedBoost(false);
         playerHealthSystem.GodMod = false;
         Debug.Log("Speed setted!");
         playerMovement.SetSpeed(defaultSpeed);
