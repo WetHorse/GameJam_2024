@@ -18,13 +18,13 @@ public class RegionSpawner : MonoBehaviour
 
     private void Start()
     {
+        framesLeft = regions.Sum((r) => r.FrameCount);
         currentFrameOrigin = PreSpawnFrames(origin.position,preSpawnCount);
-        framesLeft = regions.Sum((r)=>r.FrameCount);
         StartCoroutine(Spawn());
     }
 
     [System.Serializable]
-    public struct Region
+    public class Region
     {
         public int FrameCount;
         public float MinimalDistance;
@@ -65,19 +65,25 @@ public class RegionSpawner : MonoBehaviour
 
     private void SpawnFrame(Vector3 frameCenter)
     {
-        framesLeft--;
         Region currentRegion = GetCurrentRegion();
-        currentRegion.FrameCount--;
-        float minX = frameCenter.x - (sizeX / 2);
-        float maxX = frameCenter.x + (sizeX / 2);
-        float minY = frameCenter.y - (sizeY / 2);
-        float maxY = frameCenter.y + (sizeY / 2);
+
+        // Calculate screen bounds in world space
+        Camera mainCamera = Camera.main;
+        if (mainCamera == null) return;
+
+        float screenHeight = mainCamera.orthographicSize * 2f; // Height of the screen in world space
+        float screenWidth = screenHeight * mainCamera.aspect;  // Width of the screen in world space
+
+        float minX = frameCenter.x - (screenWidth / 2) + (sizeX / 2); // Adjust for obstacle size
+        float maxX = frameCenter.x + (screenWidth / 2) - (sizeX / 2);
+        float minY = frameCenter.y - (screenHeight / 2) + (sizeY / 2);
+        float maxY = frameCenter.y + (screenHeight / 2) - (sizeY / 2);
 
         List<Vector3> placedObstacles = new List<Vector3>();
         int spawnedObstacles = 0;
         int iteration = 0;
 
-        while (spawnedObstacles < currentRegion.ObstaclesPerFrame && iteration < iterationLimitPerFrame)
+        while (currentRegion  != null && spawnedObstacles < currentRegion.ObstaclesPerFrame && iteration < iterationLimitPerFrame)
         {
             iteration++;
 
@@ -86,10 +92,11 @@ public class RegionSpawner : MonoBehaviour
                 Obstacle randomObstacle = currentRegion.Obstacles[Random.Range(0, currentRegion.Obstacles.Count)];
                 Vector3 obstacleSize = randomObstacle.transform.localScale;
 
-                float candidateMinX = minX + obstacleSize.x / 2;
-                float candidateMaxX = maxX - obstacleSize.x / 2;
-                float candidateMinY = minY + obstacleSize.y / 2;
-                float candidateMaxY = maxY - obstacleSize.y / 2;
+                // Adjust spawn area to ensure at least 50% of the obstacle is visible
+                float candidateMinX = minX + obstacleSize.x / 4; // Half of half (50%)
+                float candidateMaxX = maxX - obstacleSize.x / 4;
+                float candidateMinY = minY + obstacleSize.y / 4;
+                float candidateMaxY = maxY - obstacleSize.y / 4;
 
                 Vector3 candidatePosition = new Vector3(
                     Random.Range(candidateMinX, candidateMaxX),
@@ -98,37 +105,39 @@ public class RegionSpawner : MonoBehaviour
                 );
 
                 bool validPosition = true;
-                foreach (var placed in placedObstacles)
+               /* foreach (var placed in placedObstacles)
                 {
                     if (Vector3.Distance(placed, candidatePosition) < currentRegion.MinimalDistance)
                     {
                         validPosition = false;
                         break;
                     }
-                }
+                }*/
 
                 if (validPosition)
                 {
                     placedObstacles.Add(candidatePosition);
 
                     var spawnedObject = Instantiate(randomObstacle, candidatePosition, Quaternion.identity);
+                    currentRegion.FrameCount--;
                     spawnedObstacles++;
                 }
             }
         }
+
         if (currentRegion.FrameCount == 0)
         {
             currentRegion.onRegionEnded?.Invoke();
         }
-        //DrawBox(frameCenter, new Vector3(sizeX, sizeY), Color.red);
+
+        DrawBox(frameCenter, new Vector3(screenWidth, screenHeight), Color.red);
     }
+
 
 
 
     public void DrawBox(Vector3 center, Vector3 size, Color color)
     {
-        Gizmos.color = color;
-
         Vector3 halfSize = size / 2f;
         Vector3 topLeft = center + new Vector3(-halfSize.x, halfSize.y, 0);
         Vector3 topRight = center + new Vector3(halfSize.x, halfSize.y, 0);
@@ -138,5 +147,21 @@ public class RegionSpawner : MonoBehaviour
         Debug.DrawLine(topRight, bottomRight, color, 5f);
         Debug.DrawLine(bottomRight, bottomLeft, color, 5f);
         Debug.DrawLine(bottomLeft, topLeft, color, 5f); 
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Vector3 center = origin.position;
+        Vector3 size = new Vector3(sizeX, sizeY);
+        Vector3 halfSize = size / 2f;
+        Vector3 topLeft = center + new Vector3(-halfSize.x, halfSize.y, 0);
+        Vector3 topRight = center + new Vector3(halfSize.x, halfSize.y, 0);
+        Vector3 bottomLeft = center + new Vector3(-halfSize.x, -halfSize.y, 0);
+        Vector3 bottomRight = center + new Vector3(halfSize.x, -halfSize.y, 0);
+        Gizmos.DrawLine(topLeft, topRight);
+        Gizmos.DrawLine(topRight, bottomRight);
+        Gizmos.DrawLine(bottomRight, bottomLeft);
+        Gizmos.DrawLine(bottomLeft, topLeft);
     }
 }
