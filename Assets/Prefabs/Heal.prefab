@@ -146,6 +146,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   snappingSpeed: 5
+  particleSystem: {fileID: 1931719722385361316, guid: e10aa7706b86eeb46a6fb56c7f86e5e3,
+    type: 3}
   healAmount: 25
 --- !u!135 &475134896481101568
 SphereCollider:

@@ -93,6 +93,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   snappingSpeed: 5
+  particleSystem: {fileID: 1931719722385361316, guid: fe3223cd9fa51574ba910233bb842694,
+    type: 3}
   boostTime: 10
   boostMultiplier: 2
   accelerationTime: 2

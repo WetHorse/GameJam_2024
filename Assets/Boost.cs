@@ -7,6 +7,7 @@ public abstract class Boost<T> : MonoBehaviour
 {
     [SerializeField] protected AnimationCurve acceleration;
     [SerializeField, Range(0, 100)] protected float snappingSpeed;
+    [SerializeField] protected ParticleSystem particleSystem;
     protected SphereCollider sphereCollider;
 
     public virtual void Awake()
@@ -28,6 +29,10 @@ public abstract class Boost<T> : MonoBehaviour
         {
             if (!CanBePickedUp(playerHealthSystem)) return;
             ApplyBoost(playerHealthSystem);
+            if (particleSystem != null)
+            {
+                Instantiate(particleSystem, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
     }
